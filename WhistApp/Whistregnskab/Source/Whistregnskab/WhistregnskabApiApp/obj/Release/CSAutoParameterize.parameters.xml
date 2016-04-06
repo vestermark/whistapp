@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="WhistregnskabsModel-Web.config Connection String" description="WhistregnskabsModel Connection String used in web.config by the application to access the database." defaultValue="data source=secondfloordev.database.windows.net;initial catalog=whist;user id=vestermark;password=Nielsen11!!;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\vestermark\\Source\\Repos\\UWP_Workshop\\WhistApp\\Whistregnskab\\Source\\Whistregnskab\\WhistregnskabApiApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WhistregnskabsModel']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,1 @@
+C:\Users\vestermark\Source\Repos\UWP_Workshop\WhistApp\Whistregnskab\Source\Whistregnskab\Whistregnskab_UWP\Whistregnskab_UWP.csproj;x86

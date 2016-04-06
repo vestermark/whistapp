@@ -1,0 +1,97 @@
+﻿<UserControl
+    x:Class="Whistregnskab_UWP.UserControls.SpilUsercontrol"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Whistregnskab_UWP.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Whistregnskab_UWP.Converters"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:TidConverter x:Key="TidConverter"/>
+        <converters:NrTilNavnConverter x:Key="NrTilNavnConverter"/>
+        <converters:MeldingConverter x:Key="MeldingConverter"/>
+        <Style x:Key="Tekst" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </UserControl.Resources>
+
+
+    <RelativePanel Margin="0,4,0,12">
+
+        <Border x:ConnectionId='1' x:Name="Ramme" Width="360" BorderBrush="LightGreen" BorderThickness="2" Height="50" CornerRadius="3" Background="White">
+            <StackPanel>
+                <Grid x:ConnectionId='2' x:Name="Grid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:ConnectionId='8' x:Name="Tid"      Text="{Binding Tidspunkt, Converter={StaticResource TidConverter}}" Style="{StaticResource Tekst}" />
+                    <TextBlock x:ConnectionId='9' x:Name="Melder"   Text="{Binding Melder, Converter={StaticResource NrTilNavnConverter}}"    Style="{StaticResource Tekst}"  Grid.Column="1" />
+                    <TextBlock x:ConnectionId='10' x:Name="Melding"  Text="{Binding Melding, Converter={StaticResource MeldingConverter}}"   Style="{StaticResource Tekst}"  Grid.Column="2"/>
+                    <TextBlock x:ConnectionId='11' x:Name="Makker"   Text="{Binding Makker, Converter={StaticResource NrTilNavnConverter}}"    Style="{StaticResource Tekst}"  Grid.Column="3"/>
+                    <TextBlock x:ConnectionId='12' x:Name="Stik"     Text="{Binding Stik}"      Style="{StaticResource Tekst}"  Grid.Column="4"/>
+                </Grid>
+                <Grid x:ConnectionId='3' x:Name="Grid2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:ConnectionId='4' x:Name="Point1"  Text="{Binding Point1}" VerticalAlignment="Center"/>
+                    <TextBlock x:ConnectionId='5' x:Name="Point2"  Text="{Binding Point2}" VerticalAlignment="Center"   Grid.Column="1" />
+                    <TextBlock x:ConnectionId='6' x:Name="Point3"  Text="{Binding Point3}" VerticalAlignment="Center"   Grid.Column="2"/>
+                    <TextBlock x:ConnectionId='7' x:Name="Point4"  Text="{Binding Point4}" VerticalAlignment="Center"   Grid.Column="3"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:ConnectionId='13' x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:ConnectionId='14' x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:ConnectionId='15' x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Ramme.Width" Value="492"/>
+                        <Setter Target="Ramme.Height" Value="60"/>
+                        <Setter Target="Grid.Margin" Value="4"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:ConnectionId='16' x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Ramme.Width" Value="816"/>
+                        <Setter Target="Ramme.Height" Value="70"/>
+                        <Setter Target="Grid.Margin" Value="8"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
+    </RelativePanel>
+
+</UserControl>
+

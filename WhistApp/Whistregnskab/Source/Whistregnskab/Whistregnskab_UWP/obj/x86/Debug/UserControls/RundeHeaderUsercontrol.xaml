@@ -1,0 +1,138 @@
+﻿<UserControl
+    x:Class="Whistregnskab_UWP.UserControls.RundeHeaderUsercontrol"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Whistregnskab_UWP.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Whistregnskab_UWP.Converters"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:DatoConverter x:Key="DatoConverter"/>
+    </UserControl.Resources>
+
+   <RelativePanel Margin="0,4,0,12">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:ConnectionId='1' x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:ConnectionId='2' x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--  TODO: change properties for narrow view  -->
+                        <!--<Setter Target="stateTextBox.Text" Value="Narrow Visual State" />-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:ConnectionId='3' x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--  TODO: change properties for normal view  -->
+                        <Setter Target="SpillerBorder1.Width" Value="120" />
+                        <Setter Target="SpillerBorder2.Width" Value="120" />
+                        <Setter Target="SpillerBorder3.Width" Value="120" />
+                        <Setter Target="SpillerBorder4.Width" Value="120" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:ConnectionId='4' x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SpillerBorder1.Width" Value="200" />
+                        <Setter Target="SpillerBorder2.Width" Value="200" />
+                        <Setter Target="SpillerBorder3.Width" Value="200" />
+                        <Setter Target="SpillerBorder4.Width" Value="200" />
+                        <Setter Target="SpillerBorder1.Height" Value="100" />
+                        <Setter Target="SpillerBorder2.Height" Value="100" />
+                        <Setter Target="SpillerBorder3.Height" Value="100" />
+                        <Setter Target="SpillerBorder4.Height" Value="100" />
+                        <Setter Target="Rect1.Height" Value="48" />
+                        <Setter Target="Rect2.Height" Value="48" />
+                        <Setter Target="Rect3.Height" Value="48" />
+                        <Setter Target="Rect4.Height" Value="48" />
+                        <Setter Target="S1.FontWeight" Value="Bold" />
+                        <Setter Target="S2.FontWeight" Value="Bold" />
+                        <Setter Target="S3.FontWeight" Value="Bold" />
+                        <Setter Target="S4.FontWeight" Value="Bold" />
+                        <Setter Target="S1.Margin" Value="0,12,0,0" />
+                        <Setter Target="S2.Margin" Value="0,12,0,0" />
+                        <Setter Target="S3.Margin" Value="0,12,0,0" />
+                        <Setter Target="S4.Margin" Value="0,12,0,0" />
+                        <Setter Target="P1.Margin" Value="0,12,0,0" />
+                        <Setter Target="P2.Margin" Value="0,12,0,0" />
+                        <Setter Target="P3.Margin" Value="0,12,0,0" />
+                        <Setter Target="P4.Margin" Value="0,12,0,0" />
+                        <Setter Target="P1.FontWeight" Value="SemiBold"/>
+                        <Setter Target="P2.FontWeight" Value="SemiBold"/>
+                        <Setter Target="P3.FontWeight" Value="SemiBold"/>
+                        <Setter Target="P4.FontWeight" Value="SemiBold"/>
+
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <!--Puljenavn-->
+        <TextBlock x:ConnectionId='5' x:Name="tbPuljeNavn" Style="{StaticResource PuljeNavnStyle}" >
+            <Run Text="Runde: "/>
+            <Run Text="{Binding Dato, Converter={StaticResource DatoConverter}}" />
+            <Run Text="  Sted: "/>
+            <Run Text="{Binding Sted}" />
+        </TextBlock>
+        
+        <!--Spiller1-->
+        <StackPanel x:ConnectionId='6' x:Name="PointPanel1"  RelativePanel.Below="tbPuljeNavn" Style="{StaticResource SpillerStackPanel}">
+            <Border x:ConnectionId='22' Style="{StaticResource SpillerBorder}" x:Name="SpillerBorder1">
+                <RelativePanel>
+                    <Rectangle Style="{StaticResource SpillerRectBackground}"/>
+                    <Rectangle x:ConnectionId='23' x:Name="Rect1" Style="{StaticResource SpillerRect}"/>
+                    <TextBlock x:ConnectionId='24' x:Name="S1" Text="{Binding Spiller1}" Style="{StaticResource SpillerNavn}"/>
+                    <TextBlock x:ConnectionId='25' x:Name="P1" Text="{Binding Point1}" RelativePanel.Below="Rect1" Style="{StaticResource SpillerPoint}"/>
+                </RelativePanel>
+            </Border>
+        </StackPanel>
+
+        <!--Spiller2-->
+        <StackPanel x:ConnectionId='7' x:Name="PointPanel2"  RelativePanel.RightOf="PointPanel1" RelativePanel.AlignVerticalCenterWith="PointPanel1" Style="{StaticResource SpillerStackPanel}">
+            <Border x:ConnectionId='18' Style="{StaticResource SpillerBorder}" x:Name="SpillerBorder2">
+                <RelativePanel>
+                    <Rectangle Style="{StaticResource SpillerRectBackground}"/>
+                    <Rectangle x:ConnectionId='19' x:Name="Rect2" Style="{StaticResource SpillerRect}"/>
+                    <TextBlock x:ConnectionId='20' x:Name="S2" Text="{Binding Spiller2}" Style="{StaticResource SpillerNavn}"/>
+                    <TextBlock x:ConnectionId='21' x:Name="P2" Text="{Binding Point2}" RelativePanel.Below="Rect2" Style="{StaticResource SpillerPoint}"/>
+                </RelativePanel>
+            </Border>
+        </StackPanel>
+
+        <!--Spiller3-->
+        <StackPanel x:ConnectionId='8' x:Name="PointPanel3"  RelativePanel.RightOf="PointPanel2" RelativePanel.AlignVerticalCenterWith="PointPanel2" Style="{StaticResource SpillerStackPanel}">
+            <Border x:ConnectionId='14' Style="{StaticResource SpillerBorder}" x:Name="SpillerBorder3">
+                <RelativePanel>
+                    <Rectangle Style="{StaticResource SpillerRectBackground}"/>
+                    <Rectangle x:ConnectionId='15' x:Name="Rect3" Style="{StaticResource SpillerRect}"/>
+                    <TextBlock x:ConnectionId='16' x:Name="S3" Text="{Binding Spiller3}" Style="{StaticResource SpillerNavn}"/>
+                    <TextBlock x:ConnectionId='17' x:Name="P3" Text="{Binding Point3}" RelativePanel.Below="Rect3" Style="{StaticResource SpillerPoint}"/>
+                </RelativePanel>
+            </Border>
+        </StackPanel>
+
+        <!--Spiller4-->
+        <StackPanel x:ConnectionId='9' x:Name="PointPanel4"  RelativePanel.RightOf="PointPanel3" RelativePanel.AlignVerticalCenterWith="PointPanel3" Style="{StaticResource SpillerStackPanel}">
+            <Border x:ConnectionId='10' Style="{StaticResource SpillerBorder}" x:Name="SpillerBorder4">
+                <RelativePanel>
+                    <Rectangle Style="{StaticResource SpillerRectBackground}"/>
+                    <Rectangle x:ConnectionId='11' x:Name="Rect4" Style="{StaticResource SpillerRect}"/>
+                    <TextBlock x:ConnectionId='12' x:Name="S4" Text="{Binding Spiller4}" Style="{StaticResource SpillerNavn}"/>
+                    <TextBlock x:ConnectionId='13' x:Name="P4" Text="{Binding Point4}" RelativePanel.Below="Rect4" Style="{StaticResource SpillerPoint}"/>
+                </RelativePanel>
+            </Border>
+        </StackPanel>
+
+    </RelativePanel>
+
+</UserControl>
+

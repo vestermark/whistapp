@@ -1,0 +1,69 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="Whistregnskab_UWP.Views.PuljePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Whistregnskab_UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Behaviors="using:Template10.Behaviors"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:userControls="using:Whistregnskab_UWP.UserControls"
+    xmlns:converters="using:Whistregnskab_UWP.Converters" 
+    DataContext="{Binding Source={StaticResource Locator}, Path=PuljePageViewModel}"
+
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:SelectedConverter x:Key="SelectedConverter"/>
+    </Page.Resources>
+
+
+    <!--<ScrollViewer>-->
+        <RelativePanel Background="{StaticResource ViewBackgroundColorBrush}">
+
+            <controls:PageHeader x:ConnectionId='2' x:Name="pageHeader" Text="WhistRegnskab">
+                <!--  place stretched, across top  -->
+                <RelativePanel.AlignTopWithPanel>True</RelativePanel.AlignTopWithPanel>
+                <RelativePanel.AlignRightWithPanel>True</RelativePanel.AlignRightWithPanel>
+                <RelativePanel.AlignLeftWithPanel>True</RelativePanel.AlignLeftWithPanel>
+                <controls:PageHeader.PrimaryCommands>
+                    <AppBarButton x:ConnectionId='7' Label="Ret" Icon="Edit"                               />
+                    <AppBarButton x:ConnectionId='8' Label="Slet" Icon="Delete"                                />
+                </controls:PageHeader.PrimaryCommands>
+
+            </controls:PageHeader>
+
+            <userControls:PuljeUsercontrol x:ConnectionId='3'                                        RelativePanel.Below="pageHeader" Margin="12" x:Name="PuljeUC"/>
+
+            <StackPanel x:ConnectionId='4' x:Name="RundeOverskrift" Orientation="Horizontal" Margin="12,0,0,0" RelativePanel.Below="PuljeUC">
+                <Button x:ConnectionId='6' x:Name="OpretRunde" FontSize="20" Foreground="White"                                    >
+                    <Button.Content>
+                        <StackPanel>
+                            <SymbolIcon Symbol="Add"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <TextBlock Text="Runder:" Foreground="White" FontSize="20" FontWeight="Bold" Margin="12,0,0,0"/>
+            </StackPanel>
+
+            <ScrollViewer RelativePanel.Below="RundeOverskrift" Margin="0,12,0,0">
+                <ListView x:ConnectionId='5'                                                     
+                          SelectionMode="Single"
+                                                                                                                                     
+                                                                   >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <userControls:RundeUsercontrol/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+
+        </RelativePanel>
+
+    <!--</ScrollViewer>-->
+
+</Page>
+

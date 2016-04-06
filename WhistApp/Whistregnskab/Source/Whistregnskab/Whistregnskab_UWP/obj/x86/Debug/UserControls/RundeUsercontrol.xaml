@@ -1,0 +1,100 @@
+﻿<UserControl
+    x:Class="Whistregnskab_UWP.UserControls.RundeUsercontrol"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Whistregnskab_UWP.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Whistregnskab_UWP.Converters"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:DatoConverter x:Key="DatoConverter"/>
+        <Style x:Key="Tekst" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </UserControl.Resources>
+    
+
+    <RelativePanel Margin="0,4,0,12">
+
+        <Border x:ConnectionId='1' x:Name="Ramme" Width="360" BorderBrush="LightGreen" BorderThickness="2" Height="50" CornerRadius="3" Background="White">
+            <Grid x:ConnectionId='2' x:Name="Grid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:ConnectionId='3' x:Name="Dato"    Text="{Binding Dato, Converter={StaticResource DatoConverter}}" Style="{StaticResource Tekst}" />
+                <TextBlock x:ConnectionId='4' x:Name="Sted"    Text="{Binding Sted}"   Style="{StaticResource Tekst}"  Grid.Column="1" />
+                <TextBlock x:ConnectionId='5' x:Name="Point1"  Text="{Binding Point1}" Style="{StaticResource Tekst}"  Grid.Column="2"/>
+                <TextBlock x:ConnectionId='6' x:Name="Point2"  Text="{Binding Point2}" Style="{StaticResource Tekst}"  Grid.Column="3"/>
+                <TextBlock x:ConnectionId='7' x:Name="Point3"  Text="{Binding Point3}" Style="{StaticResource Tekst}"  Grid.Column="4"/>
+                <TextBlock x:ConnectionId='8' x:Name="Point4"  Text="{Binding Point4}" Style="{StaticResource Tekst}"  Grid.Column="5"/>
+                <TextBlock x:ConnectionId='9' x:Name="Bem"     Text="{Binding Bem}"    Style="{StaticResource Tekst}"  Grid.Row="1" Grid.ColumnSpan="6"/>
+
+            </Grid>
+        </Border>
+
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:ConnectionId='10' x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:ConnectionId='11' x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:ConnectionId='12' x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Ramme.Width" Value="492"/>
+                        <Setter Target="Ramme.Height" Value="60"/>
+                        <Setter Target="Grid.Margin" Value="4"/>
+                        <Setter Target="Dato.FontWeight" Value="Bold"/>
+                        <Setter Target="Sted.FontWeight" Value="Bold"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:ConnectionId='13' x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Ramme.Width" Value="816"/>
+                        <Setter Target="Ramme.Height" Value="70"/>
+                        <Setter Target="Grid.Margin" Value="8"/>
+                        <Setter Target="Dato.FontWeight" Value="Bold"/>
+                        <Setter Target="Sted.FontWeight" Value="Bold"/>
+                        <Setter Target="Point1.FontWeight" Value="Bold"/>
+                        <Setter Target="Point2.FontWeight" Value="Bold"/>
+                        <Setter Target="Point3.FontWeight" Value="Bold"/>
+                        <Setter Target="Point4.FontWeight" Value="Bold"/>
+                        <Setter Target="Dato.FontSize" Value="18"/>
+                        <Setter Target="Sted.FontSize" Value="18"/>
+                        <Setter Target="Point1.FontSize" Value="18"/>
+                        <Setter Target="Point2.FontSize" Value="18"/>
+                        <Setter Target="Point3.FontSize" Value="18"/>
+                        <Setter Target="Point4.FontSize" Value="18"/>
+                        <Setter Target="Bem.FontSize" Value="18"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
+    </RelativePanel>
+
+</UserControl>
+

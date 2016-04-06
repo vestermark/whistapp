@@ -1,0 +1,55 @@
+<Page x:Class="Whistregnskab_UWP.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Whistregnskab_UWP.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:Whistregnskab_UWP.ViewModels" mc:Ignorable="d"
+      xmlns:converters="using:Whistregnskab_UWP.Converters"
+      xmlns:userControls="using:Whistregnskab_UWP.UserControls"
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainPageViewModel}">
+
+    <Page.Resources>
+        <converters:SelectedConverter x:Key="SelectedConverter"/>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <RelativePanel Background="{StaticResource ViewBackgroundColorBrush}">
+
+            <controls:PageHeader x:Name="pageHeader" Text="WhistRegnskab">
+                <!--  place stretched, across top  -->
+                <RelativePanel.AlignTopWithPanel>True</RelativePanel.AlignTopWithPanel>
+                <RelativePanel.AlignRightWithPanel>True</RelativePanel.AlignRightWithPanel>
+                <RelativePanel.AlignLeftWithPanel>True</RelativePanel.AlignLeftWithPanel>
+                <controls:PageHeader.PrimaryCommands>
+                    <AppBarButton Label="Opret ny pulje" Icon="Shop" Click="{x:Bind ViewModel.Opret}"/>                   
+                </controls:PageHeader.PrimaryCommands>
+            </controls:PageHeader>
+
+            <RelativePanel x:Name="TopTekst" Margin="12" RelativePanel.Below="pageHeader">
+                <TextBlock x:Name="text" Text="Dine Puljer" Foreground="White" FontSize="30"/>
+            </RelativePanel>
+
+            <ListView x:Name="lvPuljeliste" ItemsSource="{x:Bind ViewModel.Puljer, Mode=OneWay}" 
+                  RelativePanel.Below="TopTekst" Margin="8" 
+                  SelectionMode="Single"
+                  SelectedItem="{x:Bind ViewModel.SelectedPulje, Mode=TwoWay, Converter={StaticResource SelectedConverter} }"
+                  Tapped="{x:Bind ViewModel.PuljeSelected}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <userControls:PuljeUsercontrol/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </RelativePanel>
+
+    </ScrollViewer>
+</Page>
+

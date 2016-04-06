@@ -1,0 +1,15 @@
+App.xbf
+Styles\Custom.xbf
+UserControls\PuljeUsercontrol.xbf
+UserControls\RundeHeaderUsercontrol.xbf
+UserControls\RundeUsercontrol.xbf
+UserControls\SpilUsercontrol.xbf
+Views\Busy.xbf
+Views\MainPage.xbf
+Views\PuljePage.xbf
+Views\RetPuljePage.xbf
+Views\RetRundePage.xbf
+Views\RundePage.xbf
+Views\Shell.xbf
+Views\SpilPage.xbf
+Views\Splash.xbf
